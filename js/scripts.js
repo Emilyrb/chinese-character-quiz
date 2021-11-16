@@ -43,6 +43,8 @@ $(document).ready(function() {
 		// Refresh page to character quiz	
 		$("#landing").hide();
 		$("#content").show();
+		total_characters = characters.length;
+		$("h3").text("00/" + total_characters);
 
 		shuffle(characters);
 		refreshWords(characters);
@@ -54,9 +56,14 @@ $(document).ready(function() {
 		$("#reveal").text(characters[0][2]);
 		$("#reveal").addClass('large-text');
 	});
+
+	completed_words = []; // for stats
+	first_time_correct = 0;
+
     // if incorrect then queue word next again and shuffle word again into list
     $(".btn-danger").click(function() {
     	if (characters.length > 0) {
+    		completed_words.push(characters[0][2]);
 	    	current_pair = characters[0];
 	    	shuffle(characters);
 	    	characters.unshift(current_pair);
@@ -68,6 +75,11 @@ $(document).ready(function() {
     // if correct then remove word and shuffle
     $(".btn-success").click(function() {
     	if (characters.length > 0) {
+    		if (!completed_words.includes(characters[0][2])) {
+    			first_time_correct++;
+    			completed_words.push(characters[0][2]);
+    			$("h3").text(first_time_correct + "/" + total_characters);
+			}
     		characters.shift();
 			refreshWords(characters);
 		} else {
