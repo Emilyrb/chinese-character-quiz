@@ -12,16 +12,32 @@
 </head>
 
 <body>
-	<div class="row justify-content-center">
-        <div class="col-xl-7 col-lg-9 text-center">
-        	<h1>Pinyin</h1>
-        	<h2>Translation</h2>
-    		<button type="button" class="btn btn-light" id="reveal">Reveal</button>
-        </div>
+  <div id="landing">
+    <div class="row justify-content-center">
+      <h2>Select lessons to learn from:</h2>
     </div>
-	<div class="row justify-content-center">
-		<button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
-		<button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+    <div class="row justify-content-center">
+      <div id="lesson_list">
+        <ul class="list-group">
+        </ul>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-primary"><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div>
+  <div id="content">
+    <div class="row justify-content-center">
+      <div class="col-xl-7 col-lg-9 text-center">
+        <h1>Pinyin</h1>
+        <h2>Translation</h2>
+        <button type="button" class="btn btn-light" id="reveal">Reveal</button>
+      </div>
+    </div>
+    <div class="row justify-content-center">
+      <button type="button" class="btn btn-success"><i class="fas fa-check"></i></button>
+      <button type="button" class="btn btn-danger"><i class="fas fa-times"></i></button>
+      </div>
     </div>
 	<script src="js/scripts.js"></script>
 </body>

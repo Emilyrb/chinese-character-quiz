@@ -11,6 +11,9 @@ h2{
 i{
 	font-size:100px;
 }
+#content{
+	display:none;
+}
 .btn-light{
 	font-size:2em;
 }
@@ -18,7 +21,10 @@ i{
 	margin:10px;
 	width:200px;
 }
-
+.list-group-item{
+	cursor:pointer;
+	padding:5px;
+}
 .large-text{
 	font-size:10em;
 }
