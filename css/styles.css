@@ -9,7 +9,7 @@ h1{
 h2{
 	font-size:3em;
 }
-h3 {
+#stats {
   position: fixed;
   bottom: 20px;
   right: 20px;
