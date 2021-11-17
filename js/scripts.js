@@ -83,7 +83,6 @@ $(document).ready(function() {
     // if incorrect then queue word next again and shuffle word again into list
     $(".btn-danger").click(function() {
     	if (characters.length > 1) {
-    		completed_words.push(characters[0][2]);
 	    	current_pair = characters[0];
 	    	shuffle(characters);
 	    	characters.unshift(current_pair);
