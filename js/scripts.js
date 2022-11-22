@@ -89,21 +89,20 @@ $(document).ready(function() {
 		$("#reveal-character").addClass('large-text');
 	});
 
-    // if incorrect then queue word next again and shuffle word again into list
-    $(".btn-danger").click(function() {
-    	if (characters.length > 1) {
-	    	current_pair = characters[0];
-	    	shuffle(characters);
-	    	characters.unshift(current_pair);
+	// if incorrect then re shuffle word back into pile and move onto next word
+	$(".btn-danger").click(function() {
+		if (characters.length > 1) {
+			shuffle(characters);
 			refreshWords(characters);
 		} else {
 			alert('You have finished all words!');
 		}
 	});
-    // if correct then remove word and shuffle
-    $(".btn-success").click(function() {
-    	if (characters.length > 1) {
-    		characters.shift();
+
+	// if correct then remove word from pile and move onto next word
+	$(".btn-success").click(function() {
+		if (characters.length > 1) {
+			characters.shift();
 			refreshWords(characters);
 			$("#progress").text(characters.length-1 + " words left");
 		} else {
