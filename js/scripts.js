@@ -48,11 +48,20 @@ $(document).ready(function() {
 			alert("Please select atleast one lesson");
 		} else {
 			characters = [];
+			previous_lesson_info = '';
+
 			for (var i = 0; i < all_characters.length; i++) {
 				tag_info = all_characters[i]["Tags"];
-				if (!tag_info.includes("Supplementary") &&
-					lessons.includes(tag_info.substring(0,22))) {
-					characters.push([all_characters[i]["Pinyin"],all_characters[i]["English"],all_characters[i]["Hanzi"]]);
+				lesson_info = tag_info.substring(0,22);
+
+				if (!tag_info.includes("Supplementary") && lessons.includes(lesson_info)) {
+					if (previous_lesson_info != lesson_info) {
+						var lesson_colour = generateColour();
+					}
+					
+					characters.push([all_characters[i]["Pinyin"],all_characters[i]["English"],all_characters[i]["Hanzi"], lesson_colour]);
+
+					previous_lesson_info = lesson_info;
 				}
 			};
 
@@ -109,6 +118,7 @@ $(document).ready(function() {
 		$("#reveal-english").text(characters[0][1]);
 		$("#reveal-character").text(characters[0][2]);
 		$("#reveal-character").removeClass('large-text');
+		$("#reveal-character").css("background-color", characters[0][3]);
 		for (var i = 0; i < hidden.length; i++) {
 			$("#reveal-"+hidden[i].toLowerCase()).text("Reveal "+hidden[i]);
 			$("#reveal-"+hidden[i].toLowerCase()).addClass("light-btn");
@@ -131,6 +141,11 @@ $(document).ready(function() {
 	  }
 
 	  return array;
+	}
+
+	function generateColour(){
+		var randomColour = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
+		return randomColour;
 	}
 
 });
