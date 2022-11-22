@@ -90,27 +90,39 @@ $(document).ready(function() {
 	});
 
 	// if incorrect then re shuffle word back into pile and move onto next word
+	words_incorrect = [];
 	$(".btn-danger").click(function() {
 		if (characters.length > 1) {
+			if(words_incorrect.indexOf(characters[0][2]) === -1) {
+				words_incorrect.push(characters[0][2]);
+			}
+
 			shuffle(characters);
 			refreshWords(characters);
 		} else {
-			alert('You have finished all words!');
+			endQuiz();
 		}
 	});
 
 	// if correct then remove word from pile and move onto next word
+	words_correct = 0;
 	$(".btn-success").click(function() {
 		if (characters.length > 1) {
 			characters.shift();
 			refreshWords(characters);
 			$("#progress").text(characters.length-1 + " words left");
+			words_correct++;
 		} else {
-			alert('You have finished all words!');
+			endQuiz();
 		}
 	});
 
+	function endQuiz(){
+		alert("You have finished all words!");
+		alert("You got " + (words_correct/(words_correct+words_incorrect.length)*100).toFixed(2) + "%");
 
+		// TODO: display incorrect words
+	}
 	// Helper functions
 	function refreshWords(array) {
 		$("#reveal-pinyin").text(characters[0][0]);
